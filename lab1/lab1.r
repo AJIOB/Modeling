@@ -63,5 +63,6 @@ res <- random_run(a, r0, m, n)
 hist(res, xlab = "Random values", breaks = histn, main = "Random histogram")
 
 message("Mean = ", mean(res))
-message("Variation (derivation) = ", var(res))
-message("Square derivation = ", sqrt(var(res)))
+pop_var <- n / (n - 1) * var(res)
+message("Population variance (derivation) = ", pop_var)
+message("Square derivation = ", sqrt(pop_var))
