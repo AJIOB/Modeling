@@ -46,8 +46,8 @@ sqr <- function(a)
 # default settings
 a <- 3
 r0 <- 1
-m <- 5
-n <- 10
+m <- 313107
+n <- 10000
 histn <- 20
 
 inp <- "y"
