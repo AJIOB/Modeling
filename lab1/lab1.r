@@ -81,4 +81,5 @@ for (i in 1:(length(res) / 2))
   res_pair_count <- c(res_pair_count, val < 1)
 }
 k <- sum(res_pair_count)
-message("Indirect signs delta = ", abs(2 * k / n - pi / 4))
+pair_count_delta <- abs(2 * k / n - pi / 4)
+message("Indirect signs delta = ", pair_count_delta, " (", pair_count_delta / (pi / 4) * 100, "%)")
