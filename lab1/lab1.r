@@ -57,3 +57,5 @@ message("Generating ", n, " numbers")
 
 res <- random_run(a, r0, m, n)
 print(res)
+
+hist(res, xlab = "Random values", breaks = histn)
