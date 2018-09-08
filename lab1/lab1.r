@@ -23,7 +23,7 @@ random_run <- function(a, r0, m, n)
   values[-1]
 }
 
-input <- function(varname, default_value)
+input_num <- function(varname, default_value)
 {
   out <- paste(c("Enter", paste(c(varname,": "), collapse = "")), collapse = " ")
   inp <- readline(prompt=out)
@@ -33,8 +33,7 @@ input <- function(varname, default_value)
   }
   else 
   {
-    out <- paste(c("Input was not a number. Using default value", default_value), collapse = " ")
-    message(out)
+    message("Input was not a number. Using default value ", default_value)
     default_value
   }
 }
@@ -45,10 +44,14 @@ r0 <- 1
 m <- 5
 n <- 10
 
-#input
-a <- input("a", a)
-r0 <- input("R0", r0)
-m <- input("m", m)
+inp <- readline("Use default values (enter y if agree)? ")
+if ("y" != inp)
+{
+  #input
+  a <- input_num("a", a)
+  r0 <- input_num("R0", r0)
+  m <- input_num("m", m)
+}
 
 message("Generating ", n, " numbers")
 
