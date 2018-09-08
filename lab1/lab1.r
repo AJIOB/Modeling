@@ -23,6 +23,26 @@ random_run <- function(a, r0, m, n)
   values[-1]
 }
 
+pos_find_in_random <- function(a, r0, m, req)
+{
+  i <- 1
+  test <- AJIOB_random(a,r0,m)
+  while(test$value != req)
+  {
+    test <- AJIOB_random(a,test$ri,m)
+    i <- i + 1
+  }
+  
+  i
+}
+
+i1_i2_find <- function(a, r0, m, xv)
+{
+  i1 <- pos_find_in_random(a, r0, m, xv)
+  P <- pos_find_in_random(a, xv * m, m, xv)
+  list("i1" = i1, "i2" = P + i1, "P" = P)
+}
+
 input_num <- function(varname, default_value)
 {
   out <- paste(c("Enter", paste(c(varname,": "), collapse = "")), collapse = " ")
@@ -83,3 +103,18 @@ for (i in 1:(length(res) / 2))
 k <- sum(res_pair_count)
 pair_count_delta <- abs(2 * k / n - pi / 4)
 message("Indirect signs delta = ", pair_count_delta, " (", pair_count_delta / (pi / 4) * 100, "%)")
+
+# 4: period length
+V <- 10^4
+message("Generate 4.1 sequence. V = ", V)
+rand_seq_4_1 <- random_run(a, r0, m, V)
+xV <- rand_seq_4_1[V]
+message("xV = ", xV)
+message("Finding i1 & i2...")
+i1_i2_P_info <- i1_i2_find(a, r0, m, xV)
+i1 <- i1_i2_P_info$i1
+i2 <- i1_i2_P_info$i2
+P <- i1_i2_P_info$P
+message("i1 = ", i1)
+message("i2 = ", i2)
+message("P (sequence period length) = ", P)
