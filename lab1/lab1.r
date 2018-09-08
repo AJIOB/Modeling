@@ -45,6 +45,7 @@ m <- 5
 n <- 10
 histn <- 20
 
+inp <- "y"
 inp <- readline("Use default values (enter y if agree)? ")
 if ("y" != inp)
 {
@@ -57,6 +58,10 @@ if ("y" != inp)
 message("Generating ", n, " numbers")
 
 res <- random_run(a, r0, m, n)
-print(res)
+#print(res)
 
 hist(res, xlab = "Random values", breaks = histn, main = "Random histogram")
+
+message("Mean = ", mean(res))
+message("Variation (derivation) = ", var(res))
+message("Square derivation = ", sqrt(var(res)))
