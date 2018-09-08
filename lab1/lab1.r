@@ -43,6 +43,7 @@ a <- 3
 r0 <- 1
 m <- 5
 n <- 10
+histn <- 20
 
 inp <- readline("Use default values (enter y if agree)? ")
 if ("y" != inp)
@@ -58,4 +59,4 @@ message("Generating ", n, " numbers")
 res <- random_run(a, r0, m, n)
 print(res)
 
-hist(res, xlab = "Random values", breaks = histn)
+hist(res, xlab = "Random values", breaks = histn, main = "Random histogram")
