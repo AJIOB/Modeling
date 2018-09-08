@@ -53,6 +53,20 @@ i1_i2_find <- function(a, r0, m, xv)
   list("i1" = i1, "i2" = P + i1, "P" = P)
 }
 
+i3_find <- function(a, r0, m, p)
+{
+  rp <- random_last_only(a, r0, m ,p) * m
+  i3 <- 0
+  while(r0 != rp)
+  {
+    r0 <- AJIOB_random(a, r0, m)$ri
+    rp <- AJIOB_random(a, rp, m)$ri
+    i3 <- i3 + 1
+  }
+  
+  list("i3" = i3, "L" = i3 + p)
+}
+
 input_num <- function(varname, default_value)
 {
   out <- paste(c("Enter", paste(c(varname,": "), collapse = "")), collapse = " ")
@@ -127,3 +141,9 @@ P <- i1_i2_P_info$P
 message("i1 = ", i1)
 message("i2 = ", i2)
 message("P (sequence period length) = ", P)
+
+i3_L_info <- i3_find(a, r0, m, P)
+i3 <- i3_L_info$i3
+L <- i3_L_info$L
+message("i3 = ", i3)
+message("L (aperiodic segment length) = ", L)
