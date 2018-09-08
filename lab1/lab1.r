@@ -38,6 +38,11 @@ input_num <- function(varname, default_value)
   }
 }
 
+sqr <- function(a)
+{
+  a*a
+}
+
 # default settings
 a <- 3
 r0 <- 1
@@ -62,7 +67,18 @@ res <- random_run(a, r0, m, n)
 
 hist(res, xlab = "Random values", breaks = histn, main = "Random histogram")
 
+# 2
 message("Mean = ", mean(res))
 pop_var <- n / (n - 1) * var(res)
 message("Population variance (derivation) = ", pop_var)
 message("Square derivation = ", sqrt(pop_var))
+
+# 3: indirect signs
+res_pair_count <- c()
+for (i in 1:(length(res) / 2))
+{
+  val <- sqr(res[2 * i]) + sqr(res[2 * i - 1])
+  res_pair_count <- c(res_pair_count, val < 1)
+}
+k <- sum(res_pair_count)
+message("Indirect signs delta = ", abs(2 * k / n - pi / 4))
