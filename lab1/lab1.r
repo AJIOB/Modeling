@@ -22,6 +22,17 @@ random_run <- function(a, r0, m, n)
   values
 }
 
+random_last_only <- function(a, r0, m, n)
+{
+  test <- list("ri" = r0)
+  for (i in seq(1, n, 1))
+  {
+    test <- AJIOB_random(a,test$ri,m)
+  }
+  
+  test$value
+}
+
 pos_find_in_random <- function(a, r0, m, req)
 {
   i <- 1
@@ -106,8 +117,7 @@ message("Indirect signs delta = ", pair_count_delta, " (", pair_count_delta / (p
 # 4: period length
 V <- 3*10^6
 message("Generate 4.1 sequence. V = ", V)
-rand_seq_4_1 <- random_run(a, r0, m, V)
-xV <- rand_seq_4_1[V]
+xV <- random_last_only(a, r0, m, V)
 message("xV = ", xV)
 message("Finding i1 & i2...")
 i1_i2_P_info <- i1_i2_find(a, r0, m, xV)
