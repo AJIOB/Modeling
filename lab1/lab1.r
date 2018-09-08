@@ -11,16 +11,15 @@ AJIOB_random <- function(a, ri, m)
 
 random_run <- function(a, r0, m, n)
 {
-  values <- c(r0 / m)
+  values <- seq(1, n)
   test <- list("ri" = r0)
   for (i in seq(1, n, 1))
   {
     test <- AJIOB_random(a,test$ri,m)
-    values <- c(values, test$value)
+    values[i] <- test$value
   }
   
-  #remove first element (based on r0)
-  values[-1]
+  values
 }
 
 pos_find_in_random <- function(a, r0, m, req)
@@ -67,7 +66,7 @@ sqr <- function(a)
 a <- 3
 r0 <- 1
 m <- 313107
-n <- 10000
+n <- 1000000
 histn <- 20
 
 inp <- "y"
@@ -94,18 +93,18 @@ message("Population variance (derivation) = ", pop_var)
 message("Square derivation = ", sqrt(pop_var))
 
 # 3: indirect signs
-res_pair_count <- c()
+res_pair_count <- seq(1, (length(res) / 2))
 for (i in 1:(length(res) / 2))
 {
   val <- sqr(res[2 * i]) + sqr(res[2 * i - 1])
-  res_pair_count <- c(res_pair_count, val < 1)
+  res_pair_count[i] <- (val < 1)
 }
 k <- sum(res_pair_count)
 pair_count_delta <- abs(2 * k / n - pi / 4)
 message("Indirect signs delta = ", pair_count_delta, " (", pair_count_delta / (pi / 4) * 100, "%)")
 
 # 4: period length
-V <- 10^4
+V <- 3*10^6
 message("Generate 4.1 sequence. V = ", V)
 rand_seq_4_1 <- random_run(a, r0, m, V)
 xV <- rand_seq_4_1[V]
