@@ -99,8 +99,38 @@ gamma_run <- function()
   stat_info_print(exp_res, "Gamma distribution")
 }
 
+triangular_run <- function()
+{
+  # distribution parameters
+  dist_a <- 5
+  dist_b <- 10
+  dist_n <- 2
+  
+  inp <- "y"
+  inp <- readline("Use default values for triangular distribution (enter y if agree)? ")
+  if ("y" != inp)
+  {
+    #input
+    dist_a <- input_num("a", dist_a)
+    dist_b <- input_num("b", dist_b)
+  }
+  
+  basic_triangular <- random_run(a, r0, m, dist_n * n)
+  triangular_temp <- seq(1, n)
+  for (i in seq(1, n))
+  {
+    start <- dist_n * (i - 1) + 1
+    stop <- dist_n * i
+    triangular_temp[i] <- min(basic_triangular[start:stop])
+  }
+  triangular_res <- dist_a + (dist_b - dist_a) * triangular_temp
+  
+  stat_info_print(triangular_res, "Triangular distribution")
+}
+
 #execution
 linear_run()
 gaussian_run()
 exponential_run()
 gamma_run()
+triangular_run()
