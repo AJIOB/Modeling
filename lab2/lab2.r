@@ -152,7 +152,7 @@ simpson_run <- function()
     stop <- dist_n * i
     simpson_temp[i] <- sum(basic_simpson[start:stop])
   }
-  simpson_res <- (dist_a + (dist_b - dist_a) * simpson_temp) / 2
+  simpson_res <- (dist_a + (dist_b - dist_a) * simpson_temp / 2)
   
   stat_info_print(simpson_res, "Simpson distribution")
 }
