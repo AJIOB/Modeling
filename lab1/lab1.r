@@ -91,6 +91,8 @@ stat_info_print <- function(values, header)
 {
   n <- length(values)
   hist(values, xlab = "Random values", breaks = histn, main = header)
+  message()
+  message("=== ", header, " ===")
   message("Mean = ", mean(values))
   pop_var <- n / (n - 1) * var(values)
   message("Population variance (derivation) = ", pop_var)
@@ -98,7 +100,7 @@ stat_info_print <- function(values, header)
 }
 
 # default settings
-a <- 3
+a <- 134279
 r0 <- 1
 m <- 313107
 n <- 1000000

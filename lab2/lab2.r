@@ -128,9 +128,39 @@ triangular_run <- function()
   stat_info_print(triangular_res, "Triangular distribution")
 }
 
+simpson_run <- function()
+{
+  # distribution parameters
+  dist_a <- 5
+  dist_b <- 10
+  dist_n <- 2
+  
+  inp <- "y"
+  inp <- readline("Use default values for Simpson distribution (enter y if agree)? ")
+  if ("y" != inp)
+  {
+    #input
+    dist_a <- input_num("a", dist_a)
+    dist_b <- input_num("b", dist_b)
+  }
+  
+  basic_simpson <- random_run(a, r0, m, dist_n * n)
+  simpson_temp <- seq(1, n)
+  for (i in seq(1, n))
+  {
+    start <- dist_n * (i - 1) + 1
+    stop <- dist_n * i
+    simpson_temp[i] <- sum(basic_simpson[start:stop])
+  }
+  simpson_res <- (dist_a + (dist_b - dist_a) * simpson_temp) / 2
+  
+  stat_info_print(simpson_res, "Simpson distribution")
+}
+
 #execution
 linear_run()
 gaussian_run()
 exponential_run()
 gamma_run()
 triangular_run()
+simpson_run()
