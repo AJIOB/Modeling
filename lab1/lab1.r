@@ -87,6 +87,16 @@ sqr <- function(a)
   a*a
 }
 
+stat_info_print <- function(values, header)
+{
+  n <- length(values)
+  hist(values, xlab = "Random values", breaks = histn, main = header)
+  message("Mean = ", mean(values))
+  pop_var <- n / (n - 1) * var(values)
+  message("Population variance (derivation) = ", pop_var)
+  message("Square derivation = ", sqrt(pop_var))
+}
+
 # default settings
 a <- 3
 r0 <- 1
@@ -109,13 +119,8 @@ message("Generating ", n, " numbers")
 res <- random_run(a, r0, m, n)
 #print(res)
 
-hist(res, xlab = "Random values", breaks = histn, main = "Random histogram")
-
 # 2
-message("Mean = ", mean(res))
-pop_var <- n / (n - 1) * var(res)
-message("Population variance (derivation) = ", pop_var)
-message("Square derivation = ", sqrt(pop_var))
+stat_info_print(res, "Random histogram")
 
 # 3: indirect signs
 res_pair_count <- seq(1, (length(res) / 2))
