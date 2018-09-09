@@ -53,6 +53,54 @@ gaussian_run <- function()
   stat_info_print(gaussian_res, "Gaussian distribution")
 }
 
+exponential_run <- function()
+{
+  # distribution parameters
+  dist_lambda <- 5
+  
+  inp <- "y"
+  inp <- readline("Use default values for exponential distribution (enter y if agree)? ")
+  if ("y" != inp)
+  {
+    #input
+    dist_lambda <- input_num("lambda", dist_lambda)
+  }
+  
+  exp_res <- (-log(basic_nums) / dist_lambda)
+  
+  stat_info_print(exp_res, "Exponential distribution")
+}
+
+gamma_run <- function()
+{
+  # distribution parameters
+  dist_lambda <- 5
+  dist_nu <- 3
+  
+  inp <- "y"
+  inp <- readline("Use default values for gamma distribution (enter y if agree)? ")
+  if ("y" != inp)
+  {
+    #input
+    dist_lambda <- input_num("lambda", dist_lambda)
+    dist_nu <- input_num("nu", dist_nu)
+  }
+  
+  basic_exp <- random_run(a, r0, m, dist_nu * n)
+  exp_temp <- seq(1, n)
+  for (i in seq(1, n))
+  {
+    start <- dist_nu * (i - 1) + 1
+    stop <- dist_nu * i
+    exp_temp[i] <- sum(log(basic_exp[start:stop]))
+  }
+  exp_res <- (-exp_temp / dist_lambda)
+  
+  stat_info_print(exp_res, "Gamma distribution")
+}
+
 #execution
 linear_run()
 gaussian_run()
+exponential_run()
+gamma_run()
