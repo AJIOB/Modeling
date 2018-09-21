@@ -51,7 +51,7 @@ p1 = qq1 * sol.pxx10 + qq2 * sol.pxx01 + piq_diag * sol.pxx11
 A = 2 * p2 + 1 * p1
 
 % Wc
-Lc = 0 %TODO
+Lc = 1 * (sol.p2010 + sol.p1010 + sol.p1001) + 2 * (sol.p2011 + sol.p1011) + 3 * (sol.p2111 + sol.p1111)
 Wc = Lc / A
 
 double(Q)
