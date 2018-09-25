@@ -1,8 +1,9 @@
 #pragma once
 
 #include <stdint.h>
+#include <string>
 
-#include "Task.h"
+#include "task.h"
 
 class Source_t
 {
@@ -10,9 +11,14 @@ public:
     void reset();
 
     Task_t generate_new_task();
+    bool is_can_genetare();
+    void execute();
+    std::string to_string();
+
+    Source_t();
 
 private:
     static const uint8_t max_timeout;
-
+    
     uint8_t timeout;
 };

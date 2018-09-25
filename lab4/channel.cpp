@@ -1,5 +1,7 @@
 #include "channel.h"
 
+#include "AJIOB_random.h"
+
 bool Channel_t::is_empty() const
 {
     return is_empty_var;
@@ -18,7 +20,13 @@ bool Channel_t::add_task(Task_t task)
 
 void Channel_t::execute()
 {
-    //TODO:
+    double value = generate_random();
+    if (value >= is_cannot_execute_probability)
+    {
+        //TODO: send log info about stop execution
+
+        is_empty_var = true;
+    }
 }
 
 Channel_t::Channel_t(double is_cannot_execute)

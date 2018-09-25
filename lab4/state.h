@@ -13,11 +13,9 @@ class State_t
 public:
     std::string to_string() const;
     void reset();
+    void switch_state();
 
-    inline State_t()
-    {
-        reset();
-    }
+    State_t();
 
 private:
     static const uint8_t max_queue_len;

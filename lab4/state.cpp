@@ -4,6 +4,10 @@
 
 const uint8_t State_t::max_queue_len = MODEL_MAX_QUEUE;
 
+State_t::State_t()
+{
+}
+
 void State_t::reset()
 {
     current_source.reset();
@@ -21,4 +25,9 @@ std::string State_t::to_string() const
     //TODO: implement
 
     return res;
+}
+
+void State_t::switch_state()
+{
+    //TODO: implement
 }

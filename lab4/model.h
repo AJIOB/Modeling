@@ -6,14 +6,14 @@
 #include "config.h"
 #include "state.h"
 
-
-
 class Model_t
 {
 public:
     static Model_t static_model_info;
 
     void reset();
+    uint64_t get_time() const;
+    void execute();
 
 private:
     uint64_t iterations;
