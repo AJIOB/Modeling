@@ -13,6 +13,8 @@ OUT_DIR 		= out
 SOURCE          = 
 SOURCE          += main.cpp
 SOURCE          += AJIOB_random.cpp
+SOURCE          += model.cpp
+SOURCE          += state.cpp
 
 ################################
 ##        Flags config
