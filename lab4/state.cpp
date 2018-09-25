@@ -18,8 +18,8 @@ void State_t::reset()
     current_queue.clear();
 
     current_execution.clear();
-    current_execution.push_back(Channel_t(MODEL_PI_1));
-    current_execution.push_back(Channel_t(MODEL_PI_2));
+    current_execution.emplace_back(MODEL_PI_1);
+    current_execution.emplace_back(MODEL_PI_2);
 }
 
 std::string State_t::to_string() const
@@ -27,7 +27,7 @@ std::string State_t::to_string() const
     std::string res;
     res += current_source.to_string();
     res += std::to_string(current_queue.size());
-    for(auto it : current_execution)
+    for(auto& it : current_execution)
     {
         res += it.to_string();
     }
@@ -38,7 +38,7 @@ std::string State_t::to_string() const
 void State_t::switch_state()
 {
     int free_executions = 0;
-    for(auto it : current_execution)
+    for(auto& it : current_execution)
     {
         it.execute();
         if (it.is_empty())
@@ -48,7 +48,7 @@ void State_t::switch_state()
     }
 
     current_source.execute();
-    bool was_generated = current_source.is_can_genetare();
+	const bool was_generated = current_source.is_can_genetare();
     Task_t generated_task;
     if (was_generated)
     {
@@ -65,9 +65,9 @@ void State_t::switch_state()
         Model_t::static_model_info.stat_generated_losing();
     }
 
-    for(auto it : current_execution)
+    for(auto& it : current_execution)
     {
-        if (current_queue.size() && it.add_task(current_queue.front()))
+        if (!current_queue.empty() && it.add_task(current_queue.front()))
         {
             current_queue.pop_front();
         }
