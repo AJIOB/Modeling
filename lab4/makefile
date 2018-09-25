@@ -15,6 +15,8 @@ SOURCE          += main.cpp
 SOURCE          += AJIOB_random.cpp
 SOURCE          += model.cpp
 SOURCE          += state.cpp
+SOURCE          += channel.cpp
+SOURCE          += source.cpp
 
 ################################
 ##        Flags config
