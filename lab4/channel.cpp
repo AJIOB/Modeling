@@ -25,6 +25,8 @@ bool Channel_t::add_task(Task_t task)
 
 void Channel_t::execute()
 {
+    if (is_empty()) return;
+
     double value = generate_random();
     if (value >= is_cannot_execute_probability)
     {

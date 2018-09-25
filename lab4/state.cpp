@@ -26,9 +26,9 @@ std::string State_t::to_string() const
     std::string res;
     res += current_source.to_string();
     res += std::to_string(current_queue.size());
-    for(auto it = current_execution.begin(); it != current_execution.end(); it++)
+    for(auto it : current_execution)
     {
-        res += it->to_string();
+        res += it.to_string();
     }
 
     return res;
@@ -36,5 +36,39 @@ std::string State_t::to_string() const
 
 void State_t::switch_state()
 {
-    //TODO: implement
+    int free_executions = 0;
+    for(auto it : current_execution)
+    {
+        it.execute();
+        if (it.is_empty())
+        {
+            free_executions++;
+        }
+    }
+
+    current_source.execute();
+    bool was_generated = current_source.is_can_genetare();
+    Task_t generated_task;
+    if (was_generated)
+    {
+        generated_task = current_source.generate_new_task();
+    }
+
+    if (was_generated && 
+        (free_executions || (current_queue.size() < max_queue_len)))
+    {
+        current_queue.push_back(generated_task);
+    }
+    else if (was_generated)
+    {
+        //TODO: log: no few queue len to add
+    }
+
+    for(auto it : current_execution)
+    {
+        if (current_queue.size() && it.add_task(current_queue.front()))
+        {
+            current_queue.pop_front();
+        }
+    }
 }
