@@ -5,6 +5,7 @@ Model_t Model_t::static_model_info;
 void Model_t::reset()
 {
     iterations = 0;
+    generated_losing = 0;
     current_state.reset();
     state_count.clear();
 }
@@ -36,5 +37,12 @@ void Model_t::print_info()
         printf("[%s]: %lu\n", it.first.c_str(), it.second);
     }
 
+    printf("Loss %lu tasks\n", generated_losing);
+
     //TODO: print stat
+}
+
+void Model_t::stat_generated_losing()
+{
+    generated_losing++;
 }

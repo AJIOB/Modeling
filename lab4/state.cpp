@@ -3,6 +3,7 @@
 #include <string>
 
 #include "config.h"
+#include "model.h"
 
 const uint8_t State_t::max_queue_len = MODEL_MAX_QUEUE;
 
@@ -61,7 +62,7 @@ void State_t::switch_state()
     }
     else if (was_generated)
     {
-        //TODO: log: no few queue len to add
+        Model_t::static_model_info.stat_generated_losing();
     }
 
     for(auto it : current_execution)
