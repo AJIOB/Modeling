@@ -19,7 +19,7 @@ Task_t Source_t::generate_new_task()
     return res;
 }
 
-bool Source_t::is_can_genetare()
+bool Source_t::is_can_genetare() const
 {
     return (timeout <= 0);
 }
@@ -32,7 +32,7 @@ void Source_t::execute()
     }
 }
 
-std::string Source_t::to_string()
+std::string Source_t::to_string() const
 {
     return std::to_string(timeout);
 }

@@ -27,3 +27,8 @@ void Model_t::execute()
     state_count[new_state_name]++;
     iterations++;
 }
+
+void Model_t::print_info()
+{
+    //TODO: print stat
+}

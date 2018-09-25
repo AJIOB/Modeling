@@ -7,6 +7,11 @@ bool Channel_t::is_empty() const
     return is_empty_var;
 }
 
+std::string Channel_t::to_string() const
+{
+    return std::to_string((int)(!is_empty()));
+}
+
 bool Channel_t::add_task(Task_t task)
 {
     if (is_empty())

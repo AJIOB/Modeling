@@ -14,6 +14,7 @@ public:
     void reset();
     uint64_t get_time() const;
     void execute();
+    void print_info();
 
 private:
     uint64_t iterations;

@@ -1,14 +1,18 @@
 #include <stdio.h>
 
 #include "config.h"
-#include "AJIOB_random.h"
+#include "model.h"
 
 int main()
 {
+    Model_t::static_model_info.reset();
+
     for (int i = 0; i < MAX_ITERATIONS; i++)
     {
-        printf("%lf\n", generate_random());
+        Model_t::static_model_info.execute();
     }
+
+    Model_t::static_model_info.print_info();
 
     return 0;
 }
