@@ -30,5 +30,11 @@ void Model_t::execute()
 
 void Model_t::print_info()
 {
+    printf("======= States =======\n");
+    for (auto it : state_count)
+    {
+        printf("[%s]: %lu\n", it.first.c_str(), it.second);
+    }
+
     //TODO: print stat
 }
