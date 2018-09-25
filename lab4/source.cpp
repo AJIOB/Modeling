@@ -15,7 +15,16 @@ void Source_t::reset()
 Task_t Source_t::generate_new_task()
 {
     Task_t res;
-    res.start_time = is_can_genetare() ? Model_t::static_model_info.get_time() : ULLONG_MAX;
+    if (is_can_genetare())
+    {
+        res.start_time = Model_t::static_model_info.get_time();
+        reset();
+    }
+    else
+    {
+        res.start_time = ULLONG_MAX;
+    }
+
     return res;
 }
 
