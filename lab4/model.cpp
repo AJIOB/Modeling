@@ -36,14 +36,12 @@ void Model_t::print_info()
     for (auto it : state_count)
     {
         double partial = ((double)it.second) / iterations;
-        printf("[%s]: %.4lf (%lu)\n", it.first.c_str(), partial, it.second);
+        printf("[%s]: %.4lf (%lu entries)\n", it.first.c_str(), partial, it.second);
     }
-
-    printf("Loss %lu tasks\n", generated_losing);
 
     double p_loss = ((double) generated_losing) / iterations;
     double q = 1 - p_loss;
-    printf("Q = %.4lf\n", q);
+    printf("Q = %.4lf (%lu tasks were lost)\n", q, generated_losing);
 
     uint64_t time_sum = 0;
     for (auto& it : task_in_system_time)
