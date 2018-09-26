@@ -53,7 +53,8 @@ void Model_t::print_info()
     double wc = ((double) time_sum) / iterations;
     printf("Wc = %.4lf\n", wc);
 
-    //TODO: print stat
+    double a = ((double) task_in_system_time.size()) / iterations;
+    printf("A = %.4lf\n", a);
 }
 
 void Model_t::stat_generated_losing()
