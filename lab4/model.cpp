@@ -9,6 +9,7 @@ void Model_t::reset()
     current_state.reset();
     state_count.clear();
     task_in_system_time.clear();
+    task_in_system.clear();
 }
 
 uint64_t Model_t::get_time() const
@@ -19,6 +20,8 @@ uint64_t Model_t::get_time() const
 void Model_t::execute()
 {
     current_state.switch_state();
+
+    task_in_system.push_back(current_state.calc_tasks());
 
     std::string new_state_name = current_state.to_string();
     if (state_count.find(new_state_name) == state_count.end())
@@ -50,6 +53,14 @@ void Model_t::print_info()
     }
     double wc = ((double) time_sum) / iterations;
     printf("Wc = %.4lf\n", wc);
+
+    uint64_t count_sum = 0;
+    for (auto& it : task_in_system)
+    {
+        count_sum += it;
+    }
+    double lc = ((double) count_sum) / iterations;
+    printf("Lc = %.4lf\n", lc);
 
     double a = ((double) task_in_system_time.size()) / iterations;
     printf("A = %.4lf\n", a);

@@ -73,3 +73,15 @@ void State_t::switch_state()
         }
     }
 }
+
+uint8_t State_t::calc_tasks()
+{
+    uint8_t res = current_queue.size();
+
+    for (auto &it : current_execution)
+    {
+        res += ((int)(!it.is_empty()));
+    }
+
+    return res;
+}

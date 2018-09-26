@@ -17,6 +17,8 @@ public:
 
     State_t();
 
+    uint8_t calc_tasks();
+
 private:
     static const uint8_t max_queue_len;
 
