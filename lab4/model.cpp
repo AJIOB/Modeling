@@ -8,6 +8,7 @@ void Model_t::reset()
     generated_losing = 0;
     current_state.reset();
     state_count.clear();
+    task_in_system_time.clear();
 }
 
 uint64_t Model_t::get_time() const
@@ -40,10 +41,27 @@ void Model_t::print_info()
 
     printf("Loss %lu tasks\n", generated_losing);
 
+    double p_loss = ((double) generated_losing) / iterations;
+    double q = 1 - p_loss;
+    printf("Q = %.4lf\n", q);
+
+    uint64_t time_sum = 0;
+    for (auto& it : task_in_system_time)
+    {
+        time_sum += it;
+    }
+    double wc = ((double) time_sum) / iterations;
+    printf("Wc = %.4lf\n", wc);
+
     //TODO: print stat
 }
 
 void Model_t::stat_generated_losing()
 {
     generated_losing++;
+}
+
+void Model_t::stat_add_task_in_system_time(uint64_t time)
+{
+    task_in_system_time.push_back(time);
 }

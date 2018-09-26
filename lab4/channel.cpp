@@ -1,6 +1,7 @@
 #include "channel.h"
 
 #include "AJIOB_random.h"
+#include "model.h"
 
 bool Channel_t::is_empty() const
 {
@@ -30,6 +31,10 @@ void Channel_t::execute()
     double value = generate_random();
     if (value >= is_cannot_execute_probability)
     {
+        uint64_t stop_time = Model_t::static_model_info.get_time();
+        uint64_t delta_time = stop_time - current_task.start_time;
+        Model_t::static_model_info.stat_add_task_in_system_time(delta_time);
+        
         //TODO: send log info about stop execution
 
         is_empty_var = true;
