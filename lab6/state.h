@@ -20,7 +20,7 @@ public:
     uint8_t calc_tasks();
 
 private:
-    static const uint8_t max_queue_len;
+    static const int8_t max_queue_len;
 
     Source_t current_source;
     std::deque<Task_t> current_queue;

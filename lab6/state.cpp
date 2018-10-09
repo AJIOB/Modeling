@@ -5,7 +5,7 @@
 #include "config.h"
 #include "model.h"
 
-const uint8_t State_t::max_queue_len = MODEL_MAX_QUEUE;
+const int8_t State_t::max_queue_len = MODEL_MAX_QUEUE;
 
 State_t::State_t()
 {
@@ -56,7 +56,7 @@ void State_t::switch_state()
     }
 
     if (was_generated && 
-        (free_executions || (current_queue.size() < max_queue_len)))
+        (free_executions || (current_queue.size() < max_queue_len) || (max_queue_len < 0)))
     {
         current_queue.push_back(generated_task);
     }
