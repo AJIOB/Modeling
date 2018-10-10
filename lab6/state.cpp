@@ -8,6 +8,7 @@
 const int8_t State_t::max_queue_len = MODEL_MAX_QUEUE;
 
 State_t::State_t()
+    : current_source(MODEL_SOURCE_RO)
 {
 }
 
@@ -23,15 +24,13 @@ void State_t::reset()
 
 std::string State_t::to_string() const
 {
-    std::string res;
-    res += current_source.to_string();
-    res += std::to_string(current_queue.size());
+    size_t element_num = current_queue.size();
     for(auto& it : current_execution)
     {
-        res += it.to_string();
+        element_num += (size_t) (!it.is_empty());
     }
 
-    return res;
+    return std::to_string(element_num);
 }
 
 void State_t::switch_state()

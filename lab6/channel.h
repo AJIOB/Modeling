@@ -10,7 +10,6 @@ public:
     bool is_empty() const;
     bool add_task(Task_t task);
     void execute();
-    std::string to_string() const;
 
     Channel_t(double is_cannot_execute);
 

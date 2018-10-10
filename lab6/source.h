@@ -13,12 +13,11 @@ public:
     Task_t generate_new_task();
     bool is_can_genetare() const;
     void execute();
-    std::string to_string() const;
 
-    Source_t();
+    Source_t(double is_cannot_generate);
 
 private:
-    static const uint8_t max_timeout;
+    const double is_cannot_generate_probability;
     
-    uint8_t timeout;
+    bool is_generated;
 };
