@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <deque>
+#include <queue>
 #include <stdint.h>
 
 #include "task.h"
@@ -23,6 +23,6 @@ private:
     static const int8_t max_queue_len;
 
     Source_t current_source;
-    std::deque<Task_t> current_queue;
+    std::priority_queue<Task_t> current_queue;
     std::deque<Channel_t> current_execution;
 };

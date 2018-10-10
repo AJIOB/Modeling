@@ -16,7 +16,10 @@ void State_t::reset()
 {
     current_source.reset();
 
-    current_queue.clear();
+    while(!current_queue.empty())
+    {
+        current_queue.pop();
+    }
 
     current_execution.clear();
     current_execution.emplace_back(MODEL_PI_1);
@@ -56,7 +59,7 @@ void State_t::switch_state()
     if (was_generated && 
         (free_executions || (((int64_t)current_queue.size()) < max_queue_len) || (max_queue_len < 0)))
     {
-        current_queue.push_back(generated_task);
+        current_queue.push(generated_task);
     }
     else if (was_generated)
     {
@@ -65,9 +68,9 @@ void State_t::switch_state()
 
     for(auto& it : current_execution)
     {
-        if (!current_queue.empty() && it.add_task(current_queue.front()))
+        if (!current_queue.empty() && it.add_task(current_queue.top()))
         {
-            current_queue.pop_front();
+            current_queue.pop();
         }
     }
 }

@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "config.h"
 #include "model.h"
+
+bool is_fifo = false;
 
 int check_config()
 {
@@ -39,14 +42,28 @@ int main()
         return 1;
     }
 
-    Model_t::static_model_info.reset();
-
-    for (int i = 0; i < MAX_ITERATIONS; i++)
+    for (int j = 0; j < 2; j++)
     {
-        Model_t::static_model_info.execute();
-    }
+        if (is_fifo)
+        {
+            printf("----   Queue as fifo   ----\n");
+        }
+        else
+        {
+            printf("----Queue with priority----\n");
+        }
 
-    Model_t::static_model_info.print_info();
+        Model_t::static_model_info.reset();
+
+        for (int i = 0; i < MAX_ITERATIONS; i++)
+        {
+            Model_t::static_model_info.execute();
+        }
+
+        Model_t::static_model_info.print_info();
+
+        is_fifo = true;
+    }
 
     return 0;
 }
