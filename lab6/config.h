@@ -11,6 +11,8 @@
 #define RANDOM_A    134279
 #define RANDOM_R0   1
 
+#define RANDOM_EXP_LAMBDA  3.0
+
 #define MAX_ITERATION_PERIODS 100000
 
 // auto config
