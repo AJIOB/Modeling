@@ -9,6 +9,7 @@ void Model_t::reset()
     current_state.reset();
     state_count.clear();
     task_in_system_time.clear();
+    task_in_queue_time.clear();
     task_in_system.clear();
 }
 
