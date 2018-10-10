@@ -19,7 +19,6 @@ void State_t::reset()
 
     current_execution.clear();
     current_execution.emplace_back(MODEL_PI_1);
-    current_execution.emplace_back(MODEL_PI_2);
 }
 
 std::string State_t::to_string() const
@@ -56,7 +55,7 @@ void State_t::switch_state()
     }
 
     if (was_generated && 
-        (free_executions || (current_queue.size() < max_queue_len) || (max_queue_len < 0)))
+        (free_executions || (((int64_t)current_queue.size()) < max_queue_len) || (max_queue_len < 0)))
     {
         current_queue.push_back(generated_task);
     }
