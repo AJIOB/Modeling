@@ -14,6 +14,11 @@ bool Channel_t::add_task(Task_t task)
     {
         is_empty_var = false;
         current_task = task;
+
+        uint64_t stop_time = Model_t::static_model_info.get_time();
+        uint64_t delta_time = stop_time - current_task.start_time;
+        Model_t::static_model_info.stat_add_task_in_queue_time(delta_time);
+        
         return true;
     }
     return false;

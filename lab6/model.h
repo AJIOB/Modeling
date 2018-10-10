@@ -18,6 +18,7 @@ public:
     void print_info();
 
     void stat_generated_losing();
+    void stat_add_task_in_queue_time(uint64_t time);
     void stat_add_task_in_system_time(uint64_t time);
 
 private:
@@ -25,6 +26,7 @@ private:
     std::map<std::string, uint64_t> state_count;
     uint64_t generated_losing;
     std::deque<uint64_t> task_in_system_time;
+    std::deque<uint64_t> task_in_queue_time;
     std::deque<uint64_t> task_in_system;
 
     State_t current_state;

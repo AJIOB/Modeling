@@ -54,6 +54,14 @@ void Model_t::print_info()
     double wc = ((double) time_sum) / iterations * (MODEL_DELTA_T);
     printf("Wc = %.4lf\n", wc);
 
+    time_sum = 0;
+    for (auto& it : task_in_queue_time)
+    {
+        time_sum += it;
+    }
+    double wq = ((double) time_sum) / iterations * (MODEL_DELTA_T);
+    printf("Wq = %.4lf\n", wq);
+
     uint64_t count_sum = 0;
     for (auto& it : task_in_system)
     {
@@ -61,9 +69,6 @@ void Model_t::print_info()
     }
     double lc = ((double) count_sum) / iterations;
     printf("Lc = %.4lf\n", lc);
-
-    double a = ((double) task_in_system_time.size()) / iterations;
-    printf("A = %.4lf\n", a);
 }
 
 void Model_t::stat_generated_losing()
@@ -74,4 +79,9 @@ void Model_t::stat_generated_losing()
 void Model_t::stat_add_task_in_system_time(uint64_t time)
 {
     task_in_system_time.push_back(time);
+}
+
+void Model_t::stat_add_task_in_queue_time(uint64_t time)
+{
+    task_in_queue_time.push_back(time);
 }
