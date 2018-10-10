@@ -51,7 +51,7 @@ void Model_t::print_info()
     {
         time_sum += it;
     }
-    double wc = ((double) time_sum) / iterations;
+    double wc = ((double) time_sum) / iterations * (MODEL_DELTA_T);
     printf("Wc = %.4lf\n", wc);
 
     uint64_t count_sum = 0;

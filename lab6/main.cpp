@@ -35,12 +35,21 @@ int check_config()
     return 0;
 }
 
+void print_config()
+{
+    printf("Lambda = %04lf (rho = %04lf)\n", MODEL_SOURCE_LAMBDA, MODEL_SOURCE_RO);
+    printf("Mu = %04lf (pi = %04lf)\n", MODEL_CHANNEL_MU, MODEL_PI_1);
+    printf("Delta t = %04lf ticks\n", MODEL_DELTA_T);
+}
+
 int main()
 {
     if (check_config())
     {
         return 1;
     }
+
+    print_config();
 
     for (int j = 0; j < 2; j++)
     {

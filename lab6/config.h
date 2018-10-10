@@ -5,7 +5,7 @@
 #define MODEL_SOURCE_LAMBDA             (2.5)
 #define MODEL_MAX_QUEUE                 (-1)
 #define MODEL_CHANNEL_MU                (3.0)
-#define MODEL_ADDITIONAL_MU_ORDER       (100)
+#define MODEL_ADDITIONAL_MU_ORDER       (10)
 
 #define RANDOM_M    313107
 #define RANDOM_A    134279
@@ -13,7 +13,7 @@
 
 #define RANDOM_EXP_LAMBDA  3.0
 
-#define MAX_ITERATION_PERIODS 10000
+#define MAX_ITERATION_PERIODS 100000
 
 // auto config
 #define MODEL_ADDITIONAL_MU             (((MODEL_SOURCE_LAMBDA) + (MODEL_CHANNEL_MU)) * (MODEL_ADDITIONAL_MU_ORDER))
